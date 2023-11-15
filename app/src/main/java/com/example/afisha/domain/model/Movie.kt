@@ -14,8 +14,9 @@ data class Movie(
     val poster: Poster,
     val countries: List<Country>,
     val premiere: String?,
-    val trailers: List<Trailer>?,
+    val videos: Video?,
     val persons: List<Person>?,
-    val totalSeriesLength: Int?,
-    val year: Int?
+    val movieLength: Int?,
+    val year: Int?,
+    val seriesLength: Int?
 )

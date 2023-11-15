@@ -1,4 +1,4 @@
-package com.example.afisha.ui
+package com.example.afisha.ui.main
 
 import androidx.lifecycle.viewModelScope
 import com.example.afisha.base.ui.BaseViewModel
@@ -13,9 +13,7 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Singleton
 
-@Singleton
 class MainViewModel @AssistedInject constructor(
     private val interactor: AfishaInteractor,
     @Assisted private val readCountriesJson: (() -> String)

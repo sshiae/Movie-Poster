@@ -22,7 +22,7 @@ import javax.inject.Inject
 /**
  * Базовая реализация [Fragment]
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : BaseChainScreenFragment() {
 
     /**
      * ViewModel

@@ -14,17 +14,15 @@ import dagger.assisted.AssistedInject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Singleton
 
-@Singleton
 class MovieDetailViewModel @AssistedInject constructor(
     private val interactor: AfishaInteractor,
-    @Assisted private val movie: Movie
+    @Assisted private val movieId: Int
 ) : BaseViewModel() {
 
     @AssistedFactory
     interface Factory {
-        fun create(movie: Movie): MovieDetailViewModel
+        fun create(movieId: Int): MovieDetailViewModel
     }
 
     /**
@@ -38,7 +36,7 @@ class MovieDetailViewModel @AssistedInject constructor(
         viewModelScope.launch {
             try {
                 movieStateFlow.emitLoading()
-                val movie = interactor.getMovieById(movie.id)
+                val movie = interactor.getMovieById(movieId)
                 movieStateFlow.emitSuccess(movie)
             } catch (e: Exception) {
                 movieStateFlow.emitError(e)

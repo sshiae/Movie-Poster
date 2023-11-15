@@ -14,14 +14,14 @@ abstract class BaseViewModel : ViewModel() {
     /**
      * [Flow] Состояние для строки поиска
      */
-    private val searchStringStateFlow: MutableStateFlow<String> = MutableStateFlow("")
+    private val searchStringStateFlow: MutableStateFlow<String> = MutableStateFlow(DEFAULT_SEARCH_STATE)
     val searchStringState
         get() = searchStringStateFlow.asStateFlow()
 
     /**
      * [Flow] Состояние для индикатора загрузки
      */
-    private val loadingStateFlow: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    private val loadingStateFlow: MutableStateFlow<Boolean> = MutableStateFlow(DEFAULT_LOADING_STATE)
     val loadingState
         get() = loadingStateFlow.asStateFlow()
 
@@ -52,6 +52,8 @@ abstract class BaseViewModel : ViewModel() {
     abstract fun firstLoad()
 
     companion object {
+        const val DEFAULT_SEARCH_STATE = ""
+        const val DEFAULT_LOADING_STATE = true
 
         /**
          * Используется для предоставления фабрики

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.afisha.AfishaScreens
 import com.example.afisha.R
 import com.example.afisha.base.ui.BaseFragment
+import com.example.afisha.base.ui.BaseViewModel.Companion.provideFactory
 import com.example.afisha.common.LoadableData
 import com.example.afisha.common.extension.collectDistinct
 import com.example.afisha.common.extension.setDisplayHomeAsUpEnabled
@@ -24,14 +25,22 @@ import com.example.afisha.domain.model.Country
 import com.example.afisha.ui.country.uiEvent.CountryUiEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CountryFragment : BaseFragment() {
 
-    override val viewModel: CountryViewModel by viewModels()
+    @Inject
+    lateinit var factory: CountryViewModel.Factory
 
     private lateinit var binding: CountryActivityBinding
     private lateinit var adapter: CountryAdapter
+
+    override val viewModel: CountryViewModel by viewModels {
+        provideFactory {
+            factory.create()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -6,11 +6,15 @@ import com.google.gson.annotations.SerializedName
 
 data class RemotePerson(
     @SerializedName("name")
-    val name: String?
+    val name: String?,
+
+    @SerializedName("enProfession")
+    val enProfession: String?
 ) : DataMapper<Person> {
     override fun mapToDomain(): Person {
         return Person(
-            name = name
+            name = name,
+            enProfession = enProfession
         )
     }
 }

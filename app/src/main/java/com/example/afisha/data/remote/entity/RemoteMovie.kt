@@ -39,14 +39,17 @@ data class RemoteMovie(
     @SerializedName("premiere.country")
     val premiere: String?,
 
-    @SerializedName("videos.trailers")
-    val trailers: List<RemoteTrailer>?,
+    @SerializedName("videos")
+    val videos: RemoteVideo?,
 
     @SerializedName("persons")
     val persons: List<RemotePerson>?,
 
-    @SerializedName("totalSeriesLength")
-    val totalSeriesLength: Int?,
+    @SerializedName("movieLength")
+    val movieLength: Int?,
+
+    @SerializedName("seriesLength")
+    val seriesLength: Int?,
 
     @SerializedName("year")
     val year: Int?
@@ -64,9 +67,10 @@ data class RemoteMovie(
             poster = poster.mapToDomain(),
             countries = countries.map { it.mapToDomain() },
             premiere = premiere,
-            trailers = trailers?.map { it.mapToDomain() },
+            videos = videos?.mapToDomain(),
             persons = persons?.map { it.mapToDomain() },
-            totalSeriesLength = totalSeriesLength,
-            year = year
+            movieLength = movieLength,
+            year = year,
+            seriesLength = seriesLength
         )
 }

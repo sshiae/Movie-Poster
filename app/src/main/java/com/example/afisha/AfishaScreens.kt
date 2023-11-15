@@ -26,14 +26,14 @@ object AfishaScreens {
      * Экран для просмотра топа фильмов в выбранной стране [country]
      */
     fun MovieTopScreen(country: Country) = FragmentScreen {
-        MovieTopFragment(country)
+        MovieTopFragment.getNewInstance(country.name)
     }
 
     /**
      * Экран для просмотра карточки фильма с выбранным фильмом [movie]
      */
     fun MovieDetailScreen(movie: Movie) = FragmentScreen {
-        MovieDetailFragment(movie)
+        MovieDetailFragment.getNewInstance(movie.name, movie.id)
     }
 
     /**

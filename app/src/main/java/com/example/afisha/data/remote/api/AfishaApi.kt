@@ -1,8 +1,8 @@
 package com.example.afisha.data.remote.api
 
 import com.example.afisha.common.network.ApiConstants
-import com.example.afisha.data.remote.entity.response.ApiDocsResponse
 import com.example.afisha.data.remote.entity.RemoteMovie
+import com.example.afisha.data.remote.entity.response.ApiDocsResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -37,7 +37,7 @@ interface AfishaApi {
      *
      * @param id - ID фильма
      */
-    @GET(ApiConstants.FILM_URL)
+    @GET("${ApiConstants.FILM_URL}/{id}")
     suspend fun getMovieById(
         @Path("id") id: Int
     ): RemoteMovie
@@ -48,12 +48,13 @@ interface AfishaApi {
         const val DEFAULT_SORT_TYPE = "-1"
         val DEFAULT_SELECT_FIELDS = listOf(
             "name", "description", "shortDescription",
-            "ageRating", "genres", "countries", "poster", "rating"
+            "ageRating", "genres", "countries", "poster", "rating",
+            "id"
         )
         val DEFAULT_NOT_NULL_FIELDS = listOf(
             "name", "description", "shortDescription",
             "ageRating", "genres.name", "countries.name",
-            "poster.url", "rating.imdb"
+            "poster.url", "rating.imdb", "id"
         )
     }
 }

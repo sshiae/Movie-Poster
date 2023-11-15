@@ -1,17 +1,18 @@
-package com.example.afisha.ui
+package com.example.afisha.ui.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.Lifecycle
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.example.afisha.AfishaScreens
 import com.example.afisha.R
 import com.example.afisha.base.ui.BaseFragment
 import com.example.afisha.base.ui.BaseViewModel.Companion.provideFactory
 import com.example.afisha.common.LoadableData
+import com.example.afisha.common.cicerone.ChainHolder
 import com.example.afisha.databinding.ActivityMainBinding
 import com.github.terrakok.cicerone.NavigatorHolder
 import com.github.terrakok.cicerone.Router
@@ -19,10 +20,12 @@ import com.github.terrakok.cicerone.androidx.AppNavigator
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.lang.ref.WeakReference
+import java.util.ArrayList
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ChainHolder {
 
     @Inject
     lateinit var navigatorHolder: NavigatorHolder
@@ -45,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override val chain = ArrayList<WeakReference<Fragment>>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -52,6 +57,11 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         loadingConstraintLayout = findViewById(R.id.loading)
         subscribe()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.firstLoad()
     }
 
     override fun onResumeFragments() {
@@ -71,9 +81,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun subscribe() {
         lifecycleScope.launch {
-            lifecycle.repeatOnLifecycle(Lifecycle.State.CREATED) {
-                launch { viewModel.initState.collect(::onViewState) }
-            }
+            launch { viewModel.initState.collect(::onViewState) }
+            launch { viewModel.loadingState.collect(::onLoadState) }
         }
     }
 
@@ -81,14 +90,21 @@ class MainActivity : AppCompatActivity() {
         when (state) {
             is LoadableData.Success -> {
                 viewModel.hideLoading()
-                router.newChain(AfishaScreens.CountryScreen())
+                if (chain.isEmpty()) {
+                    router.newChain(AfishaScreens.CountryScreen())
+                }
             }
             is LoadableData.Loading -> viewModel.showLoading()
             is LoadableData.Error -> {
                 viewModel.hideLoading()
                 showErrorMessage(state.error.message!!)
+                chain.clear()
             }
         }
+    }
+
+    private fun onLoadState(visibility: Boolean) {
+        loadingConstraintLayout.isVisible = visibility
     }
 
     private fun readJsonFile(resourceId: Int): String {

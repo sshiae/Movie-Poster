@@ -11,7 +11,8 @@ import com.example.afisha.common.emitSuccess
 import com.example.afisha.domain.interactor.AfishaInteractor
 import com.example.afisha.domain.model.Country
 import com.example.afisha.ui.country.uiEvent.CountryUiEvent
-import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.assisted.AssistedFactory
+import dagger.assisted.AssistedInject
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,12 +20,15 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class CountryViewModel @Inject constructor(
+class CountryViewModel @AssistedInject constructor(
     private val interactor: AfishaInteractor
 ) : BaseViewModel() {
+
+    @AssistedFactory
+    interface Factory {
+        fun create(): CountryViewModel
+    }
 
     /**
      * [Flow] для получения списка стран

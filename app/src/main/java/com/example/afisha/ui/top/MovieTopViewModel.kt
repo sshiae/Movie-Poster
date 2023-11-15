@@ -19,17 +19,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import javax.inject.Singleton
 
-@Singleton
 class MovieTopViewModel @AssistedInject constructor(
     private val interactor: AfishaInteractor,
-    @Assisted private val country: Country
+    @Assisted private val country: String
 ) : BaseViewModel() {
 
     @AssistedFactory
     interface Factory {
-        fun create(country: Country): MovieTopViewModel
+        fun create(country: String): MovieTopViewModel
     }
 
     /**
@@ -49,7 +47,7 @@ class MovieTopViewModel @AssistedInject constructor(
         viewModelScope.launch {
             try {
                 topOfMoviesStateFlow.emitLoading()
-                interactor.getMoviesSortedByRating(country.name)
+                interactor.getMoviesSortedByRating(country)
                     .collect { movies ->
                         topOfMoviesStateFlow.emitSuccess(movies)
                     }

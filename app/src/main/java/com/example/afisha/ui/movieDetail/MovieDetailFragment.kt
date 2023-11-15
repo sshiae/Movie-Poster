@@ -18,12 +18,12 @@ import com.example.afisha.common.extension.setTitle
 import com.example.afisha.databinding.MovieDetailActivityBinding
 import com.example.afisha.domain.model.Movie
 import com.squareup.picasso.Picasso
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class MovieDetailFragment(
-    private val movie: Movie
-) : BaseFragment() {
+@AndroidEntryPoint
+class MovieDetailFragment : BaseFragment() {
 
     @Inject
     lateinit var factory: MovieDetailViewModel.Factory
@@ -32,7 +32,9 @@ class MovieDetailFragment(
 
     override val viewModel: MovieDetailViewModel by viewModels {
         provideFactory {
-            factory.create(movie)
+            factory.create(
+                requireArguments().getInt(EXTRA_MOVIE_ID)
+            )
         }
     }
 
@@ -47,7 +49,7 @@ class MovieDetailFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setTitle(movie.name)
+        setTitle(requireArguments().getString(EXTRA_MOVIE)!!)
         setDisplayHomeAsUpEnabled(true)
     }
 
@@ -66,7 +68,7 @@ class MovieDetailFragment(
         when (state) {
             is LoadableData.Success -> {
                 viewModel.hideLoading()
-                renderLine(movie)
+                renderLine(state.value)
             }
             is LoadableData.Loading -> viewModel.showLoading()
             is LoadableData.Error -> {
@@ -81,14 +83,13 @@ class MovieDetailFragment(
             Picasso.get().load(movie.poster.url).into(binding.ivPreview)
             tvTitle.text = movie.name
             tvSubtitle.text = getString(R.string.movie_detail_subtitle_text,
-                movie.premiere, movie.totalSeriesLength, movie.ageRating)
-            tvGenres.text = getString(R.string.movie_detail_genres_text,
-                movie.year, movie.genres.joinToString(", ") { it.name })
+                getOneCountry(movie), getMovieLength(movie), movie.ageRating)
+            tvGenres.text = getString(R.string.movie_detail_genres_text, movie.year, getGenres(movie))
             tvRating.text = getString(R.string.movie_detail_rating_text, movie.rating.imdb)
-            tvActors.text = getString(R.string.movie_detail_actors_text,
-                movie.persons?.joinToString(", ") { it.name!! })
-            tvPremier.text = getString(R.string.movie_detail_premier_text, movie.premiere)
+            tvActors.text = getString(R.string.movie_detail_actors_text, getActors(movie))
+            tvPremier.text = getString(R.string.movie_detail_premier_text, getOneCountry(movie))
             tvDescription.text = movie.description
+            tvDirector.text = getString(R.string.movie_detail_director_text, getDirector(movie))
             tvTrailer.setOnClickListener {
                 val url = getOneUrlTrailer(movie)
                 if (url != null) {
@@ -99,6 +100,47 @@ class MovieDetailFragment(
     }
 
     private fun getOneUrlTrailer(movie: Movie): String? {
-        return movie.trailers?.getOrNull(0)?.url
+        return movie.videos?.trailers?.getOrNull(0)?.url
+    }
+
+    private fun getDirector(movie: Movie): String {
+        val filtered = movie.persons?.filter { it.enProfession?.lowercase() == DIRECTOR_PROFESSION_NAME }
+        val person = filtered?.getOrNull(0)
+        return person?.name ?: ""
+    }
+
+    private fun getActors(movie: Movie): String {
+        val actors = movie.persons?.filter { it.enProfession?.lowercase() == ACTOR_PROFESSION_NAME }
+        val actorsString = actors?.joinToString(", ") { it.name!! }
+        return actorsString ?: ""
+    }
+
+    private fun getOneCountry(movie: Movie): String {
+        return movie.countries.getOrNull(0)?.name ?: (movie.premiere ?: "")
+    }
+
+    private fun getMovieLength(movie: Movie): Int? {
+        return movie.movieLength ?: movie.seriesLength
+    }
+
+    private fun getGenres(movie: Movie): String {
+        return movie.genres.joinToString(", ") { it.name }
+    }
+
+    companion object {
+        private const val DIRECTOR_PROFESSION_NAME = "director"
+        private const val ACTOR_PROFESSION_NAME = "actor"
+
+        private const val EXTRA_MOVIE = "EXTRA_MOVIE"
+        private const val EXTRA_MOVIE_ID = "EXTRA_MOVIE_ID"
+
+        fun getNewInstance(movie: String, movieId: Int): MovieDetailFragment {
+            return MovieDetailFragment().apply {
+                arguments = Bundle().apply {
+                    putString(EXTRA_MOVIE, movie)
+                    putInt(EXTRA_MOVIE_ID, movieId)
+                }
+            }
+        }
     }
 }

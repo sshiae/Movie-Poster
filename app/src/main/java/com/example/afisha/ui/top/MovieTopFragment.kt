@@ -30,9 +30,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MovieTopFragment(
-    private val country: Country
-) : BaseFragment() {
+class MovieTopFragment : BaseFragment() {
 
     @Inject
     lateinit var factory: MovieTopViewModel.Factory
@@ -42,7 +40,9 @@ class MovieTopFragment(
 
     override val viewModel: MovieTopViewModel by viewModels {
         provideFactory {
-            factory.create(country)
+            factory.create(
+                requireArguments().getString(EXTRA_COUNTRY).toString()
+            )
         }
     }
 
@@ -52,7 +52,7 @@ class MovieTopFragment(
         savedInstanceState: Bundle?
     ): View {
         binding = MovieTopActivityBinding.inflate(layoutInflater)
-        adapter = MovieTopAdapter(viewModel::onItemClicked)
+        adapter = MovieTopAdapter(requireContext(), viewModel::onItemClicked)
         return binding.root
     }
 
@@ -135,6 +135,18 @@ class MovieTopFragment(
         with (binding.list) {
             rvList.adapter = adapter
             rvList.layoutManager = LinearLayoutManager(rvList.context)
+        }
+    }
+
+    companion object {
+        private const val EXTRA_COUNTRY = "EXTRA_COUNTRY"
+
+        fun getNewInstance(country: String): MovieTopFragment {
+            return MovieTopFragment().apply {
+                arguments = Bundle().apply {
+                    putString(EXTRA_COUNTRY, country)
+                }
+            }
         }
     }
 }
