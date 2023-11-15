@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clFirstBlock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/medium_padding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/shade_primary_color">
+
+                <ImageView
+                    android:id="@+id/ivPreview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/movie_image_content_description"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/preview_movie" />
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/text_size_title"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivPreview"
+                    tools:text="Ину-о: Рождение легенды" />
+
+                <TextView
+                    android:id="@+id/tvSubtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:textColor="@color/text_field_background_color_2"
+                    android:textSize="@dimen/text_size_subtitle"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                    tools:text="Япония ● 98 мин ● 16+" />
+
+                <TextView
+                    android:id="@+id/tvGenres"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:textColor="@color/text_field_background_color_2"
+                    android:textSize="@dimen/text_size_subtitle"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+                    tools:text="2021, Драма, Мультфильм, Аниме" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/mcvRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/backroung_green"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    android:layout_marginTop="@dimen/default_margin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvGenres">
+
+                    <TextView
+                        android:id="@+id/tvRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textColor="@color/white_primary"
+                        android:textSize="@dimen/text_size_subtitle"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvSubtitle"
+                        tools:text="IMDB 7,2"
+                        android:layout_margin="@dimen/small_margin"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/tvTrailer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:textColor="@color/text_field_background_color_2"
+                    android:textSize="@dimen/text_size_subtitle"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mcvRating"
+                    tools:text="▶ Трейлер"
+                    android:clickable="true"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/clSecondBlock"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/clFirstBlock"
+                android:background="@color/background_color"
+                android:padding="@dimen/medium_padding"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvDirector"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:clickable="true"
+                    android:textColor="@color/text_field_background_color_2"
+                    android:textSize="@dimen/text_size_subtitle"
+                    tools:text="Режиссер: Фумиэ Такэути" />
+
+                <TextView
+                    android:id="@+id/tvActors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:clickable="true"
+                    android:textColor="@color/text_field_background_color_2"
+                    android:textSize="@dimen/text_size_subtitle"
+                    tools:text="Актеры: Каори Фукуи, Ёсикадзу Йоко, Кадзуя Камия, Кэндзи Номура, Маюми Танака, Сёта Аояма" />
+
+                <TextView
+                    android:id="@+id/tvPremier"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:clickable="true"
+                    android:textColor="@color/text_field_background_color_2"
+                    android:textSize="@dimen/text_size_subtitle"
+                    tools:text="Премьера: Россия" />
+
+                <TextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin"
+                    android:clickable="true"
+                    android:textSize="@dimen/text_size_description"
+                    tools:text="Ину-о был проклят при рождении. С первого дня его жизни перепуганные взрослые закрывали тканью каждый сантиметр его тела, а лицо прятали под маской. Но однажды, услышав песню слепого музыканта, Ину-о открыл в себе невероятный дар, позволяющий ему во время танца перевоплощаться в самое прекрасное создание на Земле. Чтобы избавиться от своего проклятья, Ину-о нужно сразиться со своими страхами. Лишь так рождаются легенды." />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
