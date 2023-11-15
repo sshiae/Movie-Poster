@@ -119,8 +119,11 @@ class MovieDetailFragment : BaseFragment() {
         return movie.countries.getOrNull(0)?.name ?: (movie.premiere ?: "")
     }
 
-    private fun getMovieLength(movie: Movie): Int? {
-        return movie.movieLength ?: movie.seriesLength
+    private fun getMovieLength(movie: Movie): Int {
+        return movie.movieLength ?:
+            movie.seriesLength ?:
+            movie.totalSeriesLength ?:
+            0
     }
 
     private fun getGenres(movie: Movie): String {

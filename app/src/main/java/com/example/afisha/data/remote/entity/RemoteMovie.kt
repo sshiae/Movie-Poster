@@ -51,6 +51,9 @@ data class RemoteMovie(
     @SerializedName("seriesLength")
     val seriesLength: Int?,
 
+    @SerializedName("totalSeriesLength")
+    val totalSeriesLength: Int?,
+
     @SerializedName("year")
     val year: Int?
 
@@ -71,6 +74,7 @@ data class RemoteMovie(
             persons = persons?.map { it.mapToDomain() },
             movieLength = movieLength,
             year = year,
-            seriesLength = seriesLength
+            seriesLength = seriesLength,
+            totalSeriesLength = totalSeriesLength
         )
 }

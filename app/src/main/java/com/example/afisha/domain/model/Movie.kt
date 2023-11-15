@@ -18,5 +18,6 @@ data class Movie(
     val persons: List<Person>?,
     val movieLength: Int?,
     val year: Int?,
-    val seriesLength: Int?
+    val seriesLength: Int?,
+    val totalSeriesLength: Int?
 )
