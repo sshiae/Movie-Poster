@@ -110,7 +110,9 @@ class MovieDetailFragment : BaseFragment() {
     }
 
     private fun getActors(movie: Movie): String {
-        val actors = movie.persons?.filter { it.enProfession?.lowercase() == ACTOR_PROFESSION_NAME }
+        val actors = movie.persons?.filter {
+            it.enProfession?.lowercase() == ACTOR_PROFESSION_NAME && it.name != null
+        }
         val actorsString = actors?.joinToString(", ") { it.name!! }
         return actorsString ?: UNDEFINED_VALUE
     }
