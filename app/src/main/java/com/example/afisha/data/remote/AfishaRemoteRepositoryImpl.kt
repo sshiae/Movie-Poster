@@ -6,7 +6,6 @@ import com.example.afisha.data.remote.api.AfishaApi
 import com.example.afisha.data.remote.paging.MovieTopPagingSource
 import com.example.afisha.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
-import retrofit2.HttpException
 import javax.inject.Inject
 
 class AfishaRemoteRepositoryImpl @Inject constructor(

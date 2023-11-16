@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -12,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.paging.PagingData
+import androidx.paging.map
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.afisha.AfishaScreens
 import com.example.afisha.R
@@ -21,10 +23,11 @@ import com.example.afisha.common.LoadableData
 import com.example.afisha.common.extension.collectDistinct
 import com.example.afisha.common.extension.setDisplayHomeAsUpEnabled
 import com.example.afisha.common.extension.setTitle
-import com.example.afisha.databinding.MovieTopActivityBinding
-import com.example.afisha.domain.model.Country
+import com.example.afisha.databinding.MovieTopFragmentBinding
+import com.example.afisha.domain.model.Genre
 import com.example.afisha.domain.model.Movie
 import com.example.afisha.ui.top.uiEvent.MovieUiEvent
+import com.example.afisha.ui.top.uiState.MovieState
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -35,7 +38,7 @@ class MovieTopFragment : BaseFragment() {
     @Inject
     lateinit var factory: MovieTopViewModel.Factory
 
-    private lateinit var binding: MovieTopActivityBinding
+    private lateinit var binding: MovieTopFragmentBinding
     private lateinit var adapter: MovieTopAdapter
 
     override val viewModel: MovieTopViewModel by viewModels {
@@ -51,8 +54,8 @@ class MovieTopFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = MovieTopActivityBinding.inflate(layoutInflater)
-        adapter = MovieTopAdapter(requireContext(), viewModel::onItemClicked)
+        binding = MovieTopFragmentBinding.inflate(layoutInflater)
+        adapter = MovieTopAdapter(viewModel::onItemClicked)
         return binding.root
     }
 
@@ -80,7 +83,8 @@ class MovieTopFragment : BaseFragment() {
         when (state) {
             is LoadableData.Success -> {
                 viewModel.hideLoading()
-                adapter.submitData(viewLifecycleOwner.lifecycle, state.value)
+                val mappedValue = state.value.map { mapToMovieState(it) }
+                adapter.submitData(viewLifecycleOwner.lifecycle, mappedValue)
             }
             is LoadableData.Loading -> viewModel.showLoading()
             is LoadableData.Error -> {
@@ -135,6 +139,33 @@ class MovieTopFragment : BaseFragment() {
         with (binding.list) {
             rvList.adapter = adapter
             rvList.layoutManager = LinearLayoutManager(rvList.context)
+        }
+    }
+
+    private fun mapToMovieState(movie: Movie): MovieState {
+        return MovieState(
+            title = movie.name,
+            posterUrl = movie.poster.url,
+            genres = getGenresAsString(movie.genres),
+            description = movie.shortDescription,
+            rating = movie.rating.imdb,
+            colorRating = getColorForRating(movie.rating.imdb.toDouble()),
+            original = movie
+        )
+    }
+
+    private fun getGenresAsString(genres: List<Genre>): String {
+        return genres.joinToString(", ") { it.name }
+    }
+
+    private fun getColorForRating(rating: Double): Int {
+        val context = requireContext()
+        return if (rating >= 7.0) {
+            ContextCompat.getColor(context, R.color.rating_good_color)
+        } else if (rating >= 5.0) {
+            ContextCompat.getColor(context, R.color.rating_ok_color)
+        } else {
+            ContextCompat.getColor(context, R.color.rating_bad_color)
         }
     }
 

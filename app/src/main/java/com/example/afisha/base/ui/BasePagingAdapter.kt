@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Базовый paging адаптер
  */
-abstract class BasePagingAdapter<T : Any, VH : RecyclerView.ViewHolder>(
+abstract class BasePagingAdapter<O, T, VH>(
     diffCallback: DiffUtil.ItemCallback<T>,
-    private val onItemClicked: ((T) -> Unit)? = null
-) : PagingDataAdapter<T, VH>(diffCallback) {
+    private val onItemClicked: ((O) -> Unit)? = null
+) : PagingDataAdapter<T, VH>(diffCallback)
+    where T : BaseUiState<O>,
+          VH : RecyclerView.ViewHolder {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val viewHolder = createViewHolder(parent)
@@ -20,7 +22,7 @@ abstract class BasePagingAdapter<T : Any, VH : RecyclerView.ViewHolder>(
                 val position = viewHolder.bindingAdapterPosition
                 val item = getItem(position)
                 if (item != null) {
-                    onItemClicked.invoke(item)
+                    onItemClicked.invoke(item.original)
                 }
             }
         }

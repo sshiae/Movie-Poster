@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -21,7 +22,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.lang.ref.WeakReference
-import java.util.ArrayList
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity(), ChainHolder {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        installSplashScreen()
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         loadingConstraintLayout = findViewById(R.id.loading)
         subscribe()

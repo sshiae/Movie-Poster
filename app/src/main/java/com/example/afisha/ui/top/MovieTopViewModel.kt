@@ -8,7 +8,6 @@ import com.example.afisha.common.emitError
 import com.example.afisha.common.emitLoading
 import com.example.afisha.common.emitSuccess
 import com.example.afisha.domain.interactor.AfishaInteractor
-import com.example.afisha.domain.model.Country
 import com.example.afisha.domain.model.Movie
 import com.example.afisha.ui.top.uiEvent.MovieUiEvent
 import dagger.assisted.Assisted

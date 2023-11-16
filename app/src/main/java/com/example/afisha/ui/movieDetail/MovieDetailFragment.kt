@@ -15,7 +15,7 @@ import com.example.afisha.base.ui.BaseViewModel.Companion.provideFactory
 import com.example.afisha.common.LoadableData
 import com.example.afisha.common.extension.setDisplayHomeAsUpEnabled
 import com.example.afisha.common.extension.setTitle
-import com.example.afisha.databinding.MovieDetailActivityBinding
+import com.example.afisha.databinding.MovieDetailFragmentBinding
 import com.example.afisha.domain.model.Movie
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +28,7 @@ class MovieDetailFragment : BaseFragment() {
     @Inject
     lateinit var factory: MovieDetailViewModel.Factory
 
-    private lateinit var binding: MovieDetailActivityBinding
+    private lateinit var binding: MovieDetailFragmentBinding
 
     override val viewModel: MovieDetailViewModel by viewModels {
         provideFactory {
@@ -43,7 +43,7 @@ class MovieDetailFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = MovieDetailActivityBinding.inflate(layoutInflater)
+        binding = MovieDetailFragmentBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -106,17 +106,17 @@ class MovieDetailFragment : BaseFragment() {
     private fun getDirector(movie: Movie): String {
         val filtered = movie.persons?.filter { it.enProfession?.lowercase() == DIRECTOR_PROFESSION_NAME }
         val person = filtered?.getOrNull(0)
-        return person?.name ?: ""
+        return person?.name ?: UNDEFINED_VALUE
     }
 
     private fun getActors(movie: Movie): String {
         val actors = movie.persons?.filter { it.enProfession?.lowercase() == ACTOR_PROFESSION_NAME }
         val actorsString = actors?.joinToString(", ") { it.name!! }
-        return actorsString ?: ""
+        return actorsString ?: UNDEFINED_VALUE
     }
 
     private fun getOneCountry(movie: Movie): String {
-        return movie.countries.getOrNull(0)?.name ?: (movie.premiere ?: "")
+        return movie.countries.getOrNull(0)?.name ?: (movie.premiere ?: UNDEFINED_VALUE)
     }
 
     private fun getMovieLength(movie: Movie): Int {
@@ -131,6 +131,7 @@ class MovieDetailFragment : BaseFragment() {
     }
 
     companion object {
+        private const val UNDEFINED_VALUE = "Неопределено"
         private const val DIRECTOR_PROFESSION_NAME = "director"
         private const val ACTOR_PROFESSION_NAME = "actor"
 

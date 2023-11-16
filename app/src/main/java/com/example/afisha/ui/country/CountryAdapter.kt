@@ -6,10 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.afisha.base.ui.BasePagingAdapter
 import com.example.afisha.databinding.CountryListItemBinding
 import com.example.afisha.domain.model.Country
+import com.example.afisha.ui.country.uiState.CountryState
 
 class CountryAdapter(
     onItemClicked: (Country) -> Unit
-) : BasePagingAdapter<Country, CountryAdapter.ItemViewHolder>(
+) : BasePagingAdapter<Country, CountryState, CountryAdapter.ItemViewHolder>(
     createDiffCallback(
         { oldItem, newItem -> oldItem.id == newItem.id },
         { oldItem, newItem -> oldItem == newItem }
@@ -26,11 +27,11 @@ class CountryAdapter(
             )
         )
 
-    override fun bindViewHolder(holder: ItemViewHolder, item: Country) = holder.bind(item)
+    override fun bindViewHolder(holder: ItemViewHolder, item: CountryState) = holder.bind(item)
 
     class ItemViewHolder(private val binding: CountryListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(country: Country) {
-            binding.title.text = country.name
+        fun bind(country: CountryState) {
+            binding.title.text = country.title
         }
     }
 }

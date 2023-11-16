@@ -47,7 +47,7 @@ android {
 dependencies {
     val hiltVersion = "2.48.1"
     val lifecycle = "2.6.2"
-    val activity = "1.8.0"
+    val activity = "1.8.1"
     val fragment = "1.6.2"
     val appcompat = "1.6.1"
     val material = "1.10.0"
@@ -58,12 +58,13 @@ dependencies {
     val ktx = "1.12.0"
     val recyclerView = "1.3.2"
     val appcompatAlpha = "1.7.0-alpha03"
-    val materialBeta = "1.11.0-beta01"
+    val materialBeta = "1.12.0-alpha01"
     val roomVersion = "2.6.0"
     val cicerone = "7.1"
-    val materialDesign = "1.11.0-beta01"
+    val materialDesign = "1.12.0-alpha01"
     val lottie = "5.2.0"
     val pagingLibrary = "3.2.1"
+    val splashScreen = "1.0.1"
 
     implementation("androidx.core:core-ktx:${ktx}")
     implementation("androidx.appcompat:appcompat:${appcompat}")
@@ -108,6 +109,9 @@ dependencies {
 
     // Paging Library
     implementation("androidx.paging:paging-runtime-ktx:${pagingLibrary}")
+
+    // Splash Screen
+    implementation("androidx.core:core-splashscreen:${splashScreen}")
 
     // JUnit
     testImplementation("junit:junit:${junit}")
