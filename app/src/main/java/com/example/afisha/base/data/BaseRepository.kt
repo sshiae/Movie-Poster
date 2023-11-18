@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import androidx.paging.map
-import com.example.afisha.common.DataMapper
+import com.example.afisha.common.DomainMapper
 import com.example.afisha.data.remote.api.AfishaApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -30,7 +30,7 @@ abstract class BaseRepository {
     /**
      * Выполнение сетевых запросов с параметрами по умолчанию для [BasePagingSource]
      */
-    protected fun <ValueDto : DataMapper<Value>, Value : Any> doPagingNetworkRequest(
+    protected fun <ValueDto : DomainMapper<Value>, Value : Any> doPagingNetworkRequest(
         pagingSource: BasePagingSource<ValueDto, Value>
     ): Flow<PagingData<Value>> {
         return Pager(
@@ -45,7 +45,7 @@ abstract class BaseRepository {
     /**
      * Выполнение сетевых запросов с параметрами по умолчанию для [PagingSource]
      */
-    protected fun <ValueDto : DataMapper<Value>, Value : Any> doPagingRequest(
+    protected fun <ValueDto : DomainMapper<Value>, Value : Any> doPagingRequest(
         pagingSource: PagingSource<Int, ValueDto>
     ): Flow<PagingData<Value>> {
         return Pager(

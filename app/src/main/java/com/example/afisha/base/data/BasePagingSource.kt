@@ -2,13 +2,13 @@ package com.example.afisha.base.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.afisha.common.DataMapper
+import com.example.afisha.common.DomainMapper
 import com.example.afisha.data.remote.entity.response.ApiDocsResponse
 
 /**
  * Базовый PagingSource класс для выполнения сетевых запросов посредством Retorift
  */
-abstract class BasePagingSource<ValueDto : DataMapper<Value>, Value : Any>(
+abstract class BasePagingSource<ValueDto : DomainMapper<Value>, Value : Any>(
     private val request: suspend (position: Int) -> ApiDocsResponse<ValueDto>,
 ) : PagingSource<Int, Value>() {
 

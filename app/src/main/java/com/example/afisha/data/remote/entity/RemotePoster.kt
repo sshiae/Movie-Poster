@@ -1,6 +1,6 @@
 package com.example.afisha.data.remote.entity
 
-import com.example.afisha.common.DataMapper
+import com.example.afisha.common.DomainMapper
 import com.example.afisha.domain.model.Poster
 import com.google.gson.annotations.SerializedName
 
@@ -13,7 +13,7 @@ data class RemotePoster(
 
     @SerializedName("previewUrl")
     val previewUrl: String
-) : DataMapper<Poster> {
+) : DomainMapper<Poster> {
     override fun mapToDomain(): Poster =
         Poster(
             url = url,

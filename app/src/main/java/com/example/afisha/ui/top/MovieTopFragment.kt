@@ -96,8 +96,10 @@ class MovieTopFragment : BaseFragment() {
 
     private fun onEvent(uiEvent: MovieUiEvent) {
         when (uiEvent) {
-            is MovieUiEvent.OpenMovieDetailFragment ->
-                router.navigateTo(AfishaScreens.MovieDetailScreen(uiEvent.movie))
+            is MovieUiEvent.OpenMovieDetailFragment -> {
+                val movie = uiEvent.movie
+                router.navigateTo(AfishaScreens.MovieDetailScreen(movie.name, movie.id))
+            }
         }
     }
 

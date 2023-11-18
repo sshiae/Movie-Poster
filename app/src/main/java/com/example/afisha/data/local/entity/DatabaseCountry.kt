@@ -3,7 +3,7 @@ package com.example.afisha.data.local.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.afisha.common.DataMapper
+import com.example.afisha.common.DomainMapper
 import com.example.afisha.domain.model.Country
 
 @Entity(tableName = "COUNTRY_TABLE")
@@ -14,7 +14,7 @@ data class DatabaseCountry(
     var name: String,
     @ColumnInfo(name = "code")
     var code: String
-) : DataMapper<Country> {
+) : DomainMapper<Country> {
     override fun mapToDomain(): Country =
         Country(
             id = id,

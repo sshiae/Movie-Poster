@@ -1,5 +1,6 @@
 package com.example.afisha.common.network
 
+import androidx.fragment.app.Fragment
 import com.example.afisha.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.Response

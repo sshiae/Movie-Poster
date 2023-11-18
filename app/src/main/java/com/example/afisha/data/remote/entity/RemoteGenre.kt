@@ -1,6 +1,6 @@
 package com.example.afisha.data.remote.entity
 
-import com.example.afisha.common.DataMapper
+import com.example.afisha.common.DomainMapper
 import com.example.afisha.domain.model.Genre
 import com.google.gson.annotations.SerializedName
 
@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
 data class RemoteGenre(
     @SerializedName("name")
     val name: String
-) : DataMapper<Genre> {
+) : DomainMapper<Genre> {
     override fun mapToDomain(): Genre =
         Genre(
             name = name

@@ -1,6 +1,6 @@
 package com.example.afisha.data.remote.entity
 
-import com.example.afisha.common.DataMapper
+import com.example.afisha.common.DomainMapper
 import com.example.afisha.domain.model.Movie
 import com.google.gson.annotations.SerializedName
 
@@ -57,7 +57,7 @@ data class RemoteMovie(
     @SerializedName("year")
     val year: Int?
 
-) : DataMapper<Movie> {
+) : DomainMapper<Movie> {
     override fun mapToDomain(): Movie =
         Movie(
             id = id,

@@ -3,7 +3,7 @@ package com.example.afisha.common
 /**
  * Маппер данных в Domain модель
  */
-interface DataMapper<T> {
+interface DomainMapper<T> {
 
     /**
      * Маппит сущность в Domain модель

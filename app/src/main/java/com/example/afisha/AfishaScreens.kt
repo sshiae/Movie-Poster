@@ -32,8 +32,8 @@ object AfishaScreens {
     /**
      * Экран для просмотра карточки фильма с выбранным фильмом [movie]
      */
-    fun MovieDetailScreen(movie: Movie) = FragmentScreen {
-        MovieDetailFragment.getNewInstance(movie.name, movie.id)
+    fun MovieDetailScreen(name: String, id: Int) = FragmentScreen {
+        MovieDetailFragment.getNewInstance(name, id)
     }
 
     /**
