@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textfield.TextInputEditText
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/searchBar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/search_height"
+    android:layout_margin="@dimen/default_margin"
+    android:background="@drawable/edit_text_background"
+    android:drawableEnd="@drawable/ic_search"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:hint="@string/search_hint"
+    android:inputType="text"
+    android:maxLines="1"
+    android:paddingStart="@dimen/medium_padding"
+    android:paddingEnd="@dimen/medium_padding"
+    android:textColor="@color/shade_primary_color"
+    android:textColorHint="@color/shade_ternary_color"
+    android:textCursorDrawable="@drawable/color_cursor"
+    android:transitionName="search_box"
+    app:drawableTint="@color/brand_color"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+    <requestFocus />
+</com.google.android.material.textfield.TextInputEditText>

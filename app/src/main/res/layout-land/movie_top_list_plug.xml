@@ -9,12 +9,11 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="196dp"
-        android:layout_height="245dp"
+        android:layout_height="213dp"
         android:contentDescription="@string/nothing_found_description"
         android:src="@drawable/ic_nothing_found"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
