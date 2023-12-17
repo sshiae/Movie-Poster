@@ -132,3 +132,9 @@ This app uses **MVVM (Model View View-Model)** architecture.
 
 To run the application on your device, you need to add the API key from Kinopoisk to the <em>local.properties</em> file:
 - apiKey = YOUR_API_KEY
+
+## Contacts
+
+- [Telegram](https://t.me/DrawableRes)
+- [VK](https://vk.com/shiae)
+- [Gmail](sven557929@gmail.com)
