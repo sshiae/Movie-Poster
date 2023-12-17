@@ -1,7 +1,7 @@
 package com.example.afisha.domain.model
 
 /**
- * Model класс, описывающий рейтинг
+ * Model describing rating
  */
 data class Rating(
     val imdb: String

@@ -30,14 +30,14 @@ class MovieTopViewModel @AssistedInject constructor(
     }
 
     /**
-     * [Flow] для получения списка фильмов, сортированных по рейтингу
+     * [[Flow] to get a list of movies sorted by rating
      */
     private val topOfMoviesStateFlow: MutableStateFlow<LoadableData<PagingData<Movie>>> =
         MutableStateFlow(LoadableData.Loading())
     val topOfMoviesState = topOfMoviesStateFlow.asStateFlow()
 
     /**
-     * [Channel] для UI событий
+     * [Channel] for UI events
      */
     private val uiEventChannel: Channel<MovieUiEvent> = Channel(Channel.BUFFERED)
     val uiEventFlow = uiEventChannel.receiveAsFlow()
@@ -57,7 +57,7 @@ class MovieTopViewModel @AssistedInject constructor(
     }
 
     /**
-     * Вызывается после нажатия на элемент списка
+     * Called after clicking on a list item
      */
     fun onItemClicked(movie: Movie) {
         uiEventChannel.trySend(MovieUiEvent.OpenMovieDetailFragment(movie))

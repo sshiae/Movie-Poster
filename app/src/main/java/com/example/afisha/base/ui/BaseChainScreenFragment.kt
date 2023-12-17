@@ -6,8 +6,8 @@ import com.example.afisha.common.cicerone.ChainHolder
 import java.lang.ref.WeakReference
 
 /**
- * Фрагмент, способный хранить цепь навигации для Cicerone
- * Здесь реализованы необходимые методы для хранения экранов в цепи навигации
+ * A fragment capable of storing a navigation chain for Cicerone.
+ * Here, the necessary methods are implemented to store screens in the navigation chain.
  */
 abstract class BaseChainScreenFragment : Fragment() {
 

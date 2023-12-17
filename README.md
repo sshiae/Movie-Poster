@@ -1,45 +1,134 @@
-# <p align="center">Киноафиша</p>
-<p>Приложение предоставляет пользователям возможность просмотра фильмов выбранной страны, отсортированных по рейтингу. Основная цель приложения заключается в предоставлении быстрого и удобного доступа к рейтинговым фильмам в зависимости от выбранной страны. Пользователи могут просматривать описания фильмов, что позволяет легко найти подходящий фильм для приятного времяпрепровождения.</p>
+# Afisha
 
-## <p>Скриншоты приложения</p>
+## About
 
-<p align="center"><em>Список стран</em></p>
+The application provides users with the ability to view movies from a selected country, sorted by rating. The main goal of the application is to offer quick and convenient access to top-rated movies based on the chosen country. Users can browse movie descriptions, making it easy to find a suitable film for enjoyable leisure time.
 
-<p align="center">
-  <img src="images/countries.jpg" alt="Список стран">
-</p>
+## Screenshots
 
-<p align="center"><em>Список фильмов</em></p>
+| Countries | Movies | Movie |
+|------------|------------|------------|
+| ![Countries](images/countries.jpg) | ![Movies](images/movies.jpg) | ![Movie](images/movie.jpg) |
 
-<p align="center">
-  <img src="images/movies.jpg" alt="Список фильмов">
-</p>
+## Features
 
-<p align="center"><em>Карточка фильма</em></p>
+### Build With
 
-<p align="center">
-  <img src="images/movie.jpg" alt="Карточка фильма">
-</p>
+- **Hilt Dependency Injection:** Used for managing dependencies, enhancing code quality, maintainability, and scalability.
+- **Paging Library:** Employed for paginated data loading, improving application performance, and enhancing user interaction and perception.
+- **MVVM (Model-View-ViewModel):** Implemented for separating the UI layer from business logic, contributing to code quality and maintainability.
+- **Room:** Utilized for working with the SQLite database, improving performance and security in database operations.
+- **Coroutines:** Applied for writing asynchronous code, facilitating efficient handling of concurrent tasks.
+- **Retrofit:** Employed for handling network requests asynchronously, with support for integration with Gson for JSON parsing.
+- **Picasso:** Used for loading and displaying images in the application.
+- **Cicerone:** Integrated for navigation between different screens in the application.
+- **Lottie:** Implemented for creating animations, particularly utilized for the loading icon.
 
-<p align="center"><em>Пустой экран</em></p>
+### Package Structure
 
-<p align="center">
-  <img src="images/empty.jpg" alt="Пустой экран">
-</p>
+```
+afisha
+  |
+  ├── base
+  |   |
+  |   ├── data
+  |   |   |
+  |   |   └── Contains base classes and utilities for data layer.
+  |   |
+  |   └── ui
+  |       |
+  |       └── Contains base classes and utilities for the user interface.
+  |
+  ├── common
+  |   |
+  |   ├── cicerone
+  |   |   |
+  |   |   └── Manages navigation using Cicerone.
+  |   |
+  |   ├── database
+  |   |   |
+  |   |   └── Manages common database-related functionality.
+  |   |
+  |   ├── extension
+  |   |   |
+  |   |   └── Includes extension functions for Kotlin.
+  |   |
+  |   └── network
+  |       |
+  |       └── Manages network-related functionality.
+  |
+  ├── data
+  |   |
+  |   ├── local
+  |   |   |
+  |   |   ├── dao
+  |   |   |   |
+  |   |   |   └── Includes Data Access Objects for local data access.
+  |   |   |
+  |   |   ├── entity
+  |   |   |   |
+  |   |   |   └── Defines entities for local data storage.
+  |   |   |
+  |   |   └── mapper
+  |   |       |
+  |   |       └── Contains mappers to convert local entities.
+  |   |
+  |   └── remote
+  |       |
+  |       ├── api
+  |       |   |
+  |       |   └── Defines API interfaces for remote data access.
+  |       |
+  |       ├── entity
+  |       |   |
+  |       |   └── Defines entities for remote data.
+  |       |
+  |       └── paging
+  |           |
+  |           └── Manages paginated data loading.
+  |
+  ├── di
+  |   |
+  |   └── Manages dependency injection setup using Hilt.
+  |
+  ├── domain
+  |   |
+  |   ├── interactor
+  |   |   |
+  |   |   └── Implements interactors for business logic.
+  |   |
+  |   └── model
+  |       |
+  |       └── Defines data models for the domain.
+  |
+  └── ui
+      |
+      ├── country
+      |   |
+      |   └── Manages UI components for country selection.
+      |
+      ├── main
+      |   |
+      |   └── Contains main UI components and screens.
+      |
+      ├── movieDetail
+      |   |
+      |   └── Manages UI components for displaying movie details.
+      |
+      └── top
+          |
+          └── Manages UI components for displaying top-rated movies.
+```
 
-## <p>Используемые технологии</p>
+### Architecture
 
-- <b>Hilt dependency injection</b> для управления зависимостями, что помогает улучшить качество, поддерживаемость и масштабируемость кода.
-- <b>Paging Library</b> для загрузки данных постранично, что помогает улучшить производительность приложения и общее взаимодействие и восприятия пользователя с продуктом.
-- <b>MVVM</b> для разделения UI слоя от бизнес логики, что помогает улучшить качество кода и поддерживаемость.
-- <b>Room</b> для работы с базой данных SQLite, что помогает улучшить производительность и безопасность при работе с ними.
-- <b>Coroutines</b> для написания асинхронного кода.
-- <b>Retrofit</b> для работы с сетевыми запросами. Позволяет работать асинхронно с запросами, поддерживает интеграцию с <b>Gson</b>
-- <b>Picasso</b> для загрузки и отображения изображений.
-- <b>Cicerone</b> для навигации между экранами.
-- <b>Lottie</b> для реализации анимаций. Используется для реализации иконки загрузки.
+This app uses **MVVM (Model View View-Model)** architecture.
 
-## <p>Запуск на вашем устройстве</p>
+<div style="text-align: center">
+ <img src="images/architecture.png">
+</div>
 
-Для запуска приложения на вашем устройстве необходимо в файл <em>local.properties</em> добавить API ключ от [кинопоиска](https://api.kinopoisk.dev/v1/documentation):
-- apiKey = ВАШ_API_КЛЮЧ
+## Running on Your Device
+
+To run the application on your device, you need to add the API key from Kinopoisk to the <em>local.properties</em> file:
+- apiKey = YOUR_API_KEY

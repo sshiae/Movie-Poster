@@ -4,13 +4,12 @@ import androidx.fragment.app.Fragment
 import java.lang.ref.WeakReference
 
 /**
- * Хранит цепь навигации для Cicerone
+ * Stores the navigation chain for Cicerone.
  */
 interface ChainHolder {
 
     /**
-     * Непосредственно сама цепь навигации, сюда кладутся все фрагменты,
-     * которые используются при навигации
+     * The navigation chain itself, where all fragments used in navigation are stored.
      */
     val chain: MutableList<WeakReference<Fragment>>
 }

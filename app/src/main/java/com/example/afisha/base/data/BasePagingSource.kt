@@ -6,7 +6,7 @@ import com.example.afisha.common.DomainMapper
 import com.example.afisha.data.remote.entity.response.ApiDocsResponse
 
 /**
- * Базовый PagingSource класс для выполнения сетевых запросов посредством Retorift
+ * Base PagingSource class for performing network requests using Retrofit.
  */
 abstract class BasePagingSource<ValueDto : DomainMapper<Value>, Value : Any>(
     private val request: suspend (position: Int) -> ApiDocsResponse<ValueDto>,

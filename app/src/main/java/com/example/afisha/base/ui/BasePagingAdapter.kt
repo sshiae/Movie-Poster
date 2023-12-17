@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 
 /**
- * Базовый paging адаптер
+ * Base paging adapter.
  */
 abstract class BasePagingAdapter<O, T, VH>(
     diffCallback: DiffUtil.ItemCallback<T>,
@@ -37,19 +37,19 @@ abstract class BasePagingAdapter<O, T, VH>(
     }
 
     /**
-     * Создание ViewHolder
+     * Create ViewHolder.
      */
     abstract fun createViewHolder(parent: ViewGroup): VH
 
     /**
-     * Настройка созданного ViewHolder
+     * Set up the created ViewHolder.
      */
     abstract fun bindViewHolder(holder: VH, item: T)
 
     companion object {
 
         /**
-         * Используется для создания DiffCallback для сравнения элементов списка
+         * Used to create DiffCallback for comparing list items.
          */
         inline fun <reified T> createDiffCallback(
             crossinline areItemsTheSame: (T, T) -> Boolean,

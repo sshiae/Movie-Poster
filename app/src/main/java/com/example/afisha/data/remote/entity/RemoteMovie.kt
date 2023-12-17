@@ -5,7 +5,7 @@ import com.example.afisha.domain.model.Movie
 import com.google.gson.annotations.SerializedName
 
 /**
- * Remote сущность, описывающая фильм
+ * Remote entity describing a movie.
  */
 data class RemoteMovie(
 

@@ -20,7 +20,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * Базовая реализация [Fragment]
+ * Base implementation of [Fragment].
  */
 abstract class BaseFragment : BaseChainScreenFragment() {
 
@@ -51,7 +51,7 @@ abstract class BaseFragment : BaseChainScreenFragment() {
     }
 
     /**
-     * Используется для подписки на [ViewModel]
+     * Used to subscribe to [ViewModel].
      */
     protected open fun subscribe() {
         with(viewLifecycleOwner) {
@@ -64,7 +64,7 @@ abstract class BaseFragment : BaseChainScreenFragment() {
     }
 
     /**
-     * Инициализация строки поиска, если она есть на макете
+     * Initialize the search bar if it exists in the layout.
      */
     protected open fun initializeSearchBar() {
         requireView().findViewById<TextInputEditText>(R.id.searchBar)?.doAfterTextChanged {
@@ -75,7 +75,7 @@ abstract class BaseFragment : BaseChainScreenFragment() {
     }
 
     /**
-     * Используется для показа сообщения с типом
+     * Used to display a message with a specific type.
      */
     protected open fun showMessage(message: String, type: MessageType) {
         MaterialAlertDialogBuilder(requireContext())
@@ -107,7 +107,7 @@ abstract class BaseFragment : BaseChainScreenFragment() {
     }
 
     /**
-     * Типы сообщения
+     * Message types.
      */
     enum class MessageType {
         ERROR,
@@ -117,9 +117,9 @@ abstract class BaseFragment : BaseChainScreenFragment() {
 
     companion object {
         const val BTN_OK_TEXT = "OK"
-        const val INFO_DIALOG_TITLE = "Сообщение"
-        const val ERROR_DIALOG_TITLE = "Ошибка"
-        const val WARNING_DIALOG_TITLE = "Предупреждение"
+        const val INFO_DIALOG_TITLE = "Message"
+        const val ERROR_DIALOG_TITLE = "Error"
+        const val WARNING_DIALOG_TITLE = "Warning"
         const val DEFAULT_SEARCH_TEXT = ""
     }
 }

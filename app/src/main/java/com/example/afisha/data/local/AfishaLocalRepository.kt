@@ -5,22 +5,22 @@ import com.example.afisha.domain.model.Country
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Локальный репозиторий для доступа к базе данных
+ * Local repository for accessing the database.
  */
 interface AfishaLocalRepository {
 
     /**
-     * Существуют ли страны в базе данных
+     * Check if countries exist in the database.
      */
     suspend fun existsCountries(): Boolean
 
     /**
-     * Сохранить список городов [countries] в базу данных
+     * Save the list of countries [countries] to the database.
      */
     suspend fun insertCountries(countries: List<Country>)
 
     /**
-     * Получить все города
+     * Get all countries.
      */
     suspend fun getCountries(searchString: String): Flow<PagingData<Country>>
 }

@@ -25,7 +25,7 @@ class MainViewModel @AssistedInject constructor(
     }
 
     /**
-     * [Flow] для первичной ининциализации приложения
+     * [Flow] for the initial initialization of the application
      */
     private val initStateFlow: MutableStateFlow<LoadableData<Boolean>> =
         MutableStateFlow(LoadableData.Loading())

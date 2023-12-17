@@ -4,6 +4,9 @@ import com.example.afisha.common.DomainMapper
 import com.example.afisha.domain.model.Person
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Remote entity describing person
+ */
 data class RemotePerson(
     @SerializedName("name")
     val name: String?,

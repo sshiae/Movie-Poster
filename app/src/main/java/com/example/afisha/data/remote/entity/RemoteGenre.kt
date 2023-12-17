@@ -5,7 +5,7 @@ import com.example.afisha.domain.model.Genre
 import com.google.gson.annotations.SerializedName
 
 /**
- * Remote сущность, описывающая жанр
+ * Remote entity describing a genre.
  */
 data class RemoteGenre(
     @SerializedName("name")

@@ -5,7 +5,7 @@ import com.example.afisha.domain.model.Country
 import com.google.gson.annotations.SerializedName
 
 /**
- * Remote сущность, описывающая страну
+ * Remote entity describing a country.
  */
 data class RemoteCountry(
     @SerializedName("name")

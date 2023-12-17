@@ -1,7 +1,7 @@
 package com.example.afisha.domain.model
 
 /**
- * Model класс, описывающий персону
+ * Model describing person
  */
 data class Person(
     val name: String?,

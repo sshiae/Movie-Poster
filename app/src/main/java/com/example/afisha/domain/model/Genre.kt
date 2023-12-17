@@ -1,7 +1,7 @@
 package com.example.afisha.domain.model
 
 /**
- * Model класс, описывающий жанр
+ * Model describing genre
  */
 data class Genre(
     val name: String

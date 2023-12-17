@@ -31,14 +31,14 @@ class CountryViewModel @AssistedInject constructor(
     }
 
     /**
-     * [Flow] для получения списка стран
+     * [Flow] for obtaining the list of countries
      */
     private val countriesStateFlow: MutableStateFlow<LoadableData<PagingData<Country>>> =
         MutableStateFlow(LoadableData.Loading())
     val countriesState = countriesStateFlow.asStateFlow()
 
     /**
-     * [Channel] для UI событий
+     * [Channel] for UI events
      */
     private val uiEventChannel: Channel<CountryUiEvent> = Channel(Channel.BUFFERED)
     val uiEventFlow = uiEventChannel.receiveAsFlow()
@@ -52,14 +52,14 @@ class CountryViewModel @AssistedInject constructor(
     }
 
     /**
-     * Вызывается после нажатия по элементу
+     * Called after clicking on an item
      */
     fun onItemClicked(item: Country) {
         uiEventChannel.trySend(CountryUiEvent.OpenMovieTopScreen(item))
     }
 
     /**
-     * Используется для получения стран по поисковой строке
+     * Used to obtain countries based on the search string
      */
     private fun getCountries(searchString: String) {
         viewModelScope.launch {

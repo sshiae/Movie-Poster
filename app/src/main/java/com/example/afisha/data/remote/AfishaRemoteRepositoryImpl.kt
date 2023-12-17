@@ -8,6 +8,9 @@ import com.example.afisha.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
+/**
+ * Implementation of [AfishaRemoteRepository]
+ */
 class AfishaRemoteRepositoryImpl @Inject constructor(
     private val afishaApi: AfishaApi
 ) : BaseRepository(), AfishaRemoteRepository {

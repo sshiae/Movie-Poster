@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 
 /**
- * Используется для установки заголовка для фрагмента
+ * Used to set the title for a fragment.
  */
 fun Fragment.setTitle(title: String) {
     (activity as AppCompatActivity).supportActionBar?.show()
@@ -19,7 +19,7 @@ fun Fragment.setTitle(title: String) {
 }
 
 /**
- * Используется для установки видимости кнопки "Назад"
+ * Used to set the visibility of the "Up" button.
  */
 fun Fragment.setDisplayHomeAsUpEnabled(enabled: Boolean) {
     val actionBar = (activity as? AppCompatActivity)?.supportActionBar
@@ -27,7 +27,7 @@ fun Fragment.setDisplayHomeAsUpEnabled(enabled: Boolean) {
 }
 
 /**
- * Используется для подписки на [FLow] с компонентами для отсеивания одинаковых значений
+ * Used to subscribe to [Flow] with components for filtering out identical values.
  */
 suspend fun Flow<CombinedLoadStates>.collectDistinct(block: (LoadState) -> Unit) {
     map { it.refresh }.distinctUntilChanged().collect(block)

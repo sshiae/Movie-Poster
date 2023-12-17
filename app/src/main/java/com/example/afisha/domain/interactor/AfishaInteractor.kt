@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
- * Interactor для взаимодействия с различными репозиториями
+ * Interactor for interacting with various repositories.
  */
 class AfishaInteractor @Inject constructor(
     private val localRepository: AfishaLocalRepository,

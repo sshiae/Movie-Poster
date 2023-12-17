@@ -8,18 +8,18 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
- * API сервис с конечными точками Retrofit
+ * API service with Retrofit endpoints.
  */
 interface AfishaApi {
 
     /**
-     * Получить список фильмов, сортированных по рейтингу
+     * Get a list of movies sorted by rating.
      *
-     * @param page - страница
-     * @param limit - количество фильмов на странице
-     * @param country - страна
-     * @param selectFields - поля в JSON ответе
-     * @param notNullFields - название полей, которые не должны быть null
+     * @param page - page
+     * @param limit - number of movies per page
+     * @param country - country
+     * @param selectFields - fields in the JSON response
+     * @param notNullFields - names of fields that should not be null
      */
     @GET(ApiConstants.FILM_URL)
     suspend fun getMoviesSortedByRating(
@@ -33,9 +33,9 @@ interface AfishaApi {
     ): ApiDocsResponse<RemoteMovie>
 
     /**
-     * Получить подробную информацию по фильму по ID [id]
+     * Get detailed information about a movie by ID [id].
      *
-     * @param id - ID фильма
+     * @param id - movie ID
      */
     @GET("${ApiConstants.FILM_URL}/{id}")
     suspend fun getMovieById(

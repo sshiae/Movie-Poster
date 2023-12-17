@@ -7,47 +7,45 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 /**
- * Базовая реализация [ViewModel]
+ * Base implementation of [ViewModel].
  */
 abstract class BaseViewModel : ViewModel() {
 
     /**
-     * [Flow] Состояние для строки поиска
+     * [Flow] State for the search string.
      */
     private val searchStringStateFlow: MutableStateFlow<String> = MutableStateFlow(DEFAULT_SEARCH_STATE)
-    val searchStringState
-        get() = searchStringStateFlow.asStateFlow()
+    val searchStringState = searchStringStateFlow.asStateFlow()
 
     /**
-     * [Flow] Состояние для индикатора загрузки
+     * [Flow] State for the loading indicator.
      */
     private val loadingStateFlow: MutableStateFlow<Boolean> = MutableStateFlow(DEFAULT_LOADING_STATE)
-    val loadingState
-        get() = loadingStateFlow.asStateFlow()
+    val loadingState = loadingStateFlow.asStateFlow()
 
     /**
-     * Используется для показа состояния загрузки
+     * Used to show loading state.
      */
     fun showLoading() {
         loadingStateFlow.update { true }
     }
 
     /**
-     * Используется для скрытия состояния загрузки
+     * Used to hide loading state.
      */
     fun hideLoading() {
         loadingStateFlow.update { false }
     }
 
     /**
-     * Используется для установки состояние строки поиска
+     * Used to set the search string state.
      */
     fun setSearchString(searchString: String) {
         searchStringStateFlow.update { searchString }
     }
 
     /**
-     * Первоначальная загрузка данных
+     * Initial data loading.
      */
     abstract fun firstLoad()
 
@@ -56,7 +54,7 @@ abstract class BaseViewModel : ViewModel() {
         const val DEFAULT_LOADING_STATE = true
 
         /**
-         * Используется для предоставления фабрики
+         * Used to provide a factory.
          */
         fun <T : ViewModel> provideFactory(
             creator: () -> T

@@ -3,12 +3,12 @@ package com.example.afisha.ui.country.uiEvent
 import com.example.afisha.domain.model.Country
 
 /**
- * UI события для фрагмента [CountryFragment]
+ * UI events for the [CountryFragment].
  */
 sealed interface CountryUiEvent {
 
     /**
-     * Открыть фрагмент с топом фильмов [MovieTopFragment]
+     * Open the fragment with the top movies [MovieTopFragment].
      */
     data class OpenMovieTopScreen(val country: Country) : CountryUiEvent
 }

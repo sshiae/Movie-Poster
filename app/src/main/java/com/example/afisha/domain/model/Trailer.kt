@@ -1,7 +1,7 @@
 package com.example.afisha.domain.model
 
 /**
- * Model класс, описывающий трейлер
+ * Model describing trailer
  */
 data class Trailer(
     val url: String?

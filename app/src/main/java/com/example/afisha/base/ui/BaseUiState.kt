@@ -1,12 +1,12 @@
 package com.example.afisha.base.ui
 
 /**
- * Базовый UI состояние с оригинальной сущность [original]
+ * Base UI state with the original entity [original].
  */
 abstract class BaseUiState<T> {
 
     /**
-     * оригинальная сущность, по которой строится [BaseUiState]
+     * The original entity on which [BaseUiState] is built.
      */
     abstract val original: T
 }

@@ -3,7 +3,6 @@ package com.example.afisha
 import android.content.Intent
 import android.net.Uri
 import com.example.afisha.domain.model.Country
-import com.example.afisha.domain.model.Movie
 import com.example.afisha.ui.country.CountryFragment
 import com.example.afisha.ui.movieDetail.MovieDetailFragment
 import com.example.afisha.ui.top.MovieTopFragment
@@ -11,33 +10,33 @@ import com.github.terrakok.cicerone.androidx.ActivityScreen
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 /**
- * Основные экраны приложения
+ * Main screens of the application.
  */
 object AfishaScreens {
 
     /**
-     * Экран для выбора страны
+     * Screen for selecting a country.
      */
     fun CountryScreen() = FragmentScreen {
         CountryFragment()
     }
 
     /**
-     * Экран для просмотра топа фильмов в выбранной стране [country]
+     * Screen for viewing the top movies in the selected country [country].
      */
     fun MovieTopScreen(country: Country) = FragmentScreen {
         MovieTopFragment.getNewInstance(country.name)
     }
 
     /**
-     * Экран для просмотра карточки фильма с выбранным фильмом [movie]
+     * Screen for viewing the details of a movie with the selected movie [name] and [id].
      */
     fun MovieDetailScreen(name: String, id: Int) = FragmentScreen {
         MovieDetailFragment.getNewInstance(name, id)
     }
 
     /**
-     * Внешний экран, на переход который осуществуляется по ссылке [url]
+     * External screen that is navigated to via the link [url].
      */
     fun ExternalScreen(url: String) = ActivityScreen {
         Intent(Intent.ACTION_VIEW, Uri.parse(url))

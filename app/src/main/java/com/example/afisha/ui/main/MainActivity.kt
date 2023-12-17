@@ -122,6 +122,6 @@ class MainActivity : AppCompatActivity(), ChainHolder {
     }
 
     companion object {
-        private const val ERROR_DIALOG_TITLE = "Ошибка"
+        private const val ERROR_DIALOG_TITLE = "Error"
     }
 }

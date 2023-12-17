@@ -1,7 +1,7 @@
 package com.example.afisha.domain.model
 
 /**
- * Model класс, описывающий фильм
+ * Model describing movie
  */
 data class Movie(
     val id: Int,

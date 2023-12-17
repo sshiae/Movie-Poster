@@ -1,7 +1,7 @@
 package com.example.afisha.domain.model
 
 /**
- * Model класс, описывающий видео
+ * Model describing video
  */
 data class Video(
     val trailers: List<Trailer>?

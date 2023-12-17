@@ -4,7 +4,7 @@ import com.example.afisha.base.ui.BaseUiState
 import com.example.afisha.domain.model.Country
 
 /**
- * UI состояние для страны [Country]
+ * UI state for country [Country]
  */
 data class CountryState(
     val id: Long,

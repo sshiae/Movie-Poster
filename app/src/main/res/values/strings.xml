@@ -1,17 +1,17 @@
 <resources>
-    <string name="app_name">КиноАфиша</string>
-    <string name="search_hint">Введите запрос</string>
-    <string name="country_fragment_title">Выберите страну</string>
-    <string name="movie_top_fragment_title">Рейтинг фильмов</string>
-    <string name="nothing_found_description">Ничего не найдено</string>
-    <string name="nothing_found_text">Ничего не найдено</string>
-    <string name="preview_movie_description">Изображение фильма</string>
-    <string name="movie_image_content_description">Картинка фильма</string>
-    <string name="movie_detail_subtitle_text">%s ● %d мин ● %s+</string>
+    <string name="app_name">Afisha</string>
+    <string name="search_hint">Enter your query</string>
+    <string name="country_fragment_title">Choose a country</string>
+    <string name="movie_top_fragment_title">Movie Ratings</string>
+    <string name="nothing_found_description">Nothing found</string>
+    <string name="nothing_found_text">Nothing found</string>
+    <string name="preview_movie_description">Movie image</string>
+    <string name="movie_image_content_description">Movie picture</string>
+    <string name="movie_detail_subtitle_text">%s ● %d min ● %s+</string>
     <string name="movie_detail_genres_text">%d, %s</string>
-    <string name="movie_detail_rating_text">IMDB %s</string>
-    <string name="movie_detail_actors_text">Актеры: %s</string>
-    <string name="movie_detail_premier_text">Премьера: %s</string>
-    <string name="movie_detail_director_text">Режиссер: %s</string>
-    <string name="trailer_text">▶ Трейлер</string>
+    <string name="movie_detail_rating_text">IMDb %s</string>
+    <string name="movie_detail_actors_text">Actors: %s</string>
+    <string name="movie_detail_premier_text">Premiere: %s</string>
+    <string name="movie_detail_director_text">Director: %s</string>
+    <string name="trailer_text">▶ Trailer</string>
 </resources>

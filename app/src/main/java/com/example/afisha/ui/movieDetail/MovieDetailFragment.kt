@@ -104,7 +104,9 @@ class MovieDetailFragment : BaseFragment() {
     }
 
     private fun getDirector(movie: Movie): String {
-        val filtered = movie.persons?.filter { it.enProfession?.lowercase() == DIRECTOR_PROFESSION_NAME }
+        val filtered = movie.persons?.filter {
+            it.enProfession?.lowercase() == DIRECTOR_PROFESSION_NAME
+        }
         val person = filtered?.getOrNull(0)
         return person?.name ?: UNDEFINED_VALUE
     }
@@ -133,7 +135,7 @@ class MovieDetailFragment : BaseFragment() {
     }
 
     companion object {
-        private const val UNDEFINED_VALUE = "Неопределено"
+        private const val UNDEFINED_VALUE = "Undefined"
         private const val DIRECTOR_PROFESSION_NAME = "director"
         private const val ACTOR_PROFESSION_NAME = "actor"
 

@@ -1,7 +1,7 @@
 package com.example.afisha.domain.model
 
 /**
- * Model класс, описывающий страну
+ * Model describing country
  */
 data class Country(
     val id: Long,

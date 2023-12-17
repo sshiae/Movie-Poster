@@ -1,12 +1,12 @@
 package com.example.afisha.common
 
 /**
- * Маппер данных в Domain модель
+ * Mapper for data to Domain model.
  */
 interface DomainMapper<T> {
 
     /**
-     * Маппит сущность в Domain модель
+     * Maps the entity to the Domain model.
      */
     fun mapToDomain(): T
 }

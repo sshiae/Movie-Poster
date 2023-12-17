@@ -26,7 +26,7 @@ class MovieDetailViewModel @AssistedInject constructor(
     }
 
     /**
-     * [Flow] для получения информации о фильме
+     * [Flow] for information about the film
      */
     private val movieStateFlow: MutableStateFlow<LoadableData<Movie>> =
         MutableStateFlow(LoadableData.Loading())

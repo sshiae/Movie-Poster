@@ -3,12 +3,12 @@ package com.example.afisha.ui.top.uiEvent
 import com.example.afisha.domain.model.Movie
 
 /**
- * UI события для фрагмента [MoviewTopFragment]
+ * UI events for the fragment [MoviewTopFragment]
  */
 sealed interface MovieUiEvent {
 
     /**
-     * Открыть фрагмент [MovieDetailFragment] с фильмом в виде параметра [movie]
+     * Open the [MovieDetailFragment] fragment with the movie as the [movie] parameter
      */
     data class OpenMovieDetailFragment(val movie: Movie) : MovieUiEvent
 }

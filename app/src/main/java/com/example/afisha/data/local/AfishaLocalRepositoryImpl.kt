@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 /**
- * Реализация интерфейса [AfishaLocalRepository]
+ * Implementation of [AfishaLocalRepository]
  */
 class AfishaLocalRepositoryImpl @Inject constructor(
     private val afishaDao: AfishaDao

@@ -5,21 +5,21 @@ import com.example.afisha.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 
 /**
- * Удаленный репозиторий для работы с сетью
+ * Remote repository for network operations.
  */
 interface AfishaRemoteRepository {
 
     /**
-     * Используется для получения списка фильмов [Movie] сортированных по рейтингу
+     * Used to retrieve a list of movies [Movie] sorted by rating.
      *
-     * @param country - страна
+     * @param country - country
      */
     suspend fun getMoviesSortedByRating(country: String): Flow<PagingData<Movie>>
 
     /**
-     * Используется для получения фильма по [id]
+     * Used to retrieve a movie by [id].
      *
-     * @param id - ID фильма
+     * @param id - movie ID
      */
     suspend fun getMovieById(id: Int): Movie
 }

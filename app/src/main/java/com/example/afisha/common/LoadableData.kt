@@ -3,41 +3,41 @@ package com.example.afisha.common
 import kotlinx.coroutines.flow.MutableStateFlow
 
 /**
- * Интерфейс для обретки загружаемых данных
+ * Interface for encapsulating loaded data.
  */
 sealed interface LoadableData<T> {
 
     /**
-     * Данные текущего состояние
+     * Data of the current state.
      */
     val value: T?
 
     /**
-     * Допуступны ли данные текущего состояние
+     * Whether data of the current state is available.
      */
     val hasValue: Boolean
         get() = (value != null)
 
     /**
-     * Состояние загрузки
+     * Loading state.
      *
-     * @param value - данные последнего статуса
+     * @param value - data of the last status
      */
     data class Loading<T>(
         override val value: T? = null
     ) : LoadableData<T>
 
     /**
-     * Состояние успешной загрузки данных [value]
+     * Successful data loading state [value].
      */
     data class Success<T>(
         override val value: T
     ) : LoadableData<T>
 
     /**
-     * Состояние не успешной загрузки данных с ошибкой [error]
+     * Unsuccessful data loading state with an [error].
      *
-     * @param value - данные последнего статуса
+     * @param value - data of the last status
      */
     data class Error<T>(
         override val value: T? = null,
@@ -46,21 +46,21 @@ sealed interface LoadableData<T> {
 }
 
 /**
- * Испускает состояние загрузки с опциональными данными [data]
+ * Emits a loading state with optional data [data].
  */
 fun <T> MutableStateFlow<LoadableData<T>>.emitLoading(data: T? = null) {
     value = LoadableData.Loading(data)
 }
 
 /**
- * Испускает состояние успешной загрузки с данными [data]
+ * Emits a successful loading state with data [data].
  */
 fun <T> MutableStateFlow<LoadableData<T>>.emitSuccess(data: T) {
     value = LoadableData.Success(data)
 }
 
 /**
- * Испускает состояние не успешной загрузки с опциональными данными [data] и ошибкой [error]
+ * Emits an unsuccessful loading state with optional data [data] and an error [error].
  */
 fun <T> MutableStateFlow<LoadableData<T>>.emitError(error: Exception, data: T? = null) {
     value = LoadableData.Error(data, error)

@@ -5,7 +5,7 @@ import com.example.afisha.domain.model.Poster
 import com.google.gson.annotations.SerializedName
 
 /**
- * Remote сущность, описывающая картинку фильма
+ * Remote entity describing poster
  */
 data class RemotePoster(
     @SerializedName("url")

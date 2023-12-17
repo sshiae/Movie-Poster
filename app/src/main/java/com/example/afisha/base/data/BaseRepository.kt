@@ -11,12 +11,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 /**
- * Абстрактный класс для реализации репозиториев
+ * Abstract class for implementing repositories.
  */
 abstract class BaseRepository {
 
     /**
-     * Базовая конфигурация для PagingLibrary
+     * Base configuration for PagingLibrary.
      */
     private val config = PagingConfig(
         PAGE_SIZE,
@@ -28,7 +28,7 @@ abstract class BaseRepository {
     )
 
     /**
-     * Выполнение сетевых запросов с параметрами по умолчанию для [BasePagingSource]
+     * Perform network requests with default parameters for [BasePagingSource].
      */
     protected fun <ValueDto : DomainMapper<Value>, Value : Any> doPagingNetworkRequest(
         pagingSource: BasePagingSource<ValueDto, Value>
@@ -43,7 +43,7 @@ abstract class BaseRepository {
     }
 
     /**
-     * Выполнение сетевых запросов с параметрами по умолчанию для [PagingSource]
+     * Perform network requests with default parameters for [PagingSource].
      */
     protected fun <ValueDto : DomainMapper<Value>, Value : Any> doPagingRequest(
         pagingSource: PagingSource<Int, ValueDto>
